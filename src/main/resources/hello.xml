@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="basePackage" extends="struts-default" namespace="/">
+		<!-- 返回类型，struts2为我们提供了丰富的返回类型 -->
+		<!--  <result-types></result-types>-->
+		
+		<!-- 拦截器 -->
+		<interceptors>  
+		    <interceptor name="myInterceptor" class="com.julyday.interceptor.MyInterceptor"/>  
+		    <interceptor-stack name="myStack" >  
+		        <interceptor-ref name="defaultStack"/>  
+		        <interceptor-ref name="myInterceptor"/>  
+		    </interceptor-stack>  
+		</interceptors> 
+		
+		<!-- 默认的拦截器栈，建议不要修改 -->
+		<default-interceptor-ref name="defaultStack"/>
+		
+		<!-- 默认的action处理类 -->
+		<default-action-ref name="default-action"></default-action-ref>
+		
+		<!-- 系统默认的class为ActionSupport,与default-action-ref同时出现时，执行class -->
+		<default-class-ref class="com.julyday.action.DefaultClassRefAction"/>  
+		
+		<!-- 全局返回结果 -->
+		<global-results>  
+            <result name="index">/index.jsp</result> 
+            <result name="arithmetic">/jsp/arithmetic.jsp</result>   
+        </global-results>
+        
+		<!-- 异常处理页面 -->
+		<global-exception-mappings>  
+            <exception-mapping result="arithmetic" exception="java.lang.ArithmeticException"/>  
+        </global-exception-mappings>
+        
+        <!-- actions -->
+    	<action name="default-action">
+    		<result name="success">/jsp/hello/hello.jsp</result>
+    	</action>
+    	<action name="hello" class="com.julyday.action.HelloAction">
+    		<result name="success">/jsp/hello/hello.jsp</result>
+    		<interceptor-ref name="myStack"/>
+    	</action>
+	</package>
+	
+</struts>

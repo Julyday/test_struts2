@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 让struts2关闭动态方法调用 -->
+	<!--<constant name="struts.enable.DynamicMethodInvocation" value="true" />-->
+	
+	<!-- 所有匹配*.action,*.do的请求都由struts2处理 -->
+	<!--<constant name="struts.action.extension" value="do,action" />-->
+	
+	<!-- 所有匹配的请求都由struts2处理 -->
+	<!-- 除了/ 和 /index.jsp -->
+	<!--<constant name="struts.action.extension" value="" />
+	<constant name="struts.action.excludePattern" value="/,/index.jsp"/>-->
+	<include file="hello.xml"/>
+	<include file="main.xml"/>
+</struts>
